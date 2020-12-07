@@ -164,14 +164,19 @@ public class Registro extends javax.swing.JFrame {
             cedula = Integer.parseInt(txtid.getText());
             celular = Integer.parseInt(txtapellido.getText());
             
-            if(nombre==null||pass==null){
+            if(nombre==null || pass==null)
+            {
                 JOptionPane.showMessageDialog(null, "Ingrese un nombre de usuario o contraseña");
-            }else if(!pass.equals(pass2)){
+            }else if(!pass.equals(pass2))
+            {
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-            }else{
+            }else 
+            {
                 usuario = new Usuario(nombre, pass, celular, cedula, carrera, correo);
                 user.put(usuario.getUsername(), usuario);
                 JOptionPane.showMessageDialog(null, "Registro creado");
+                JOptionPane.showMessageDialog(null, "Nombre de usuario: "+usuario.getUsername());
+                
             }
             
             VentanaPrincipal ventana = new VentanaPrincipal();

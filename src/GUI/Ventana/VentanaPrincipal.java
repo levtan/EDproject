@@ -12,7 +12,6 @@ import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 public class VentanaPrincipal extends javax.swing.JFrame {
     
     static HashMap<String, Usuario> userlist = new HashMap<>();
@@ -144,19 +143,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             
             asciivalue++;
             userName = (char) asciivalue;
-        }
-        
-        System.out.println(userlist.size());
-        Usuario us = userlist.get("b");
-        Usuario use = new Usuario("b", "HOALA");
-        
-        System.out.println(use.getUsername());
-        
-        if(use.getUsername() == "b")
-        {
-            System.out.println("BUENAS GONORREAS");
-        }
-        
+        }        
         JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
     }//GEN-LAST:event_btnPushActionPerformed
 

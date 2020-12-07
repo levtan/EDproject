@@ -173,6 +173,13 @@ InicioSesión user = new InicioSesión();
 
     private void btPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPerfilActionPerformed
         
+        InicioSesión user = new InicioSesión();
+        String useraname = user.getUser();
+        
+        Perfil ventanaPerfil = new Perfil(useraname);
+        ventanaPerfil.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_btPerfilActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
