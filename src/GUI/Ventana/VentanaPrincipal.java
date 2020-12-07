@@ -3,18 +3,22 @@ package GUI.Ventana;
 
 import Data.Evento;
 import Data.LinkedStack;
+import Data.Participante;
 import Data.QueueArray;
 import Data.Usuario;
 import Data.TreeAVL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
 public class VentanaPrincipal extends javax.swing.JFrame {
     
-    static LinkedStack<Usuario> user;
+    static HashMap<String, Usuario> userlist = new HashMap<>();
+    
     static QueueArray<Evento> evento= new QueueArray(10000);
+    static boolean bool;
     
     public VentanaPrincipal() {
         initComponents();
@@ -116,10 +120,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInvitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvitadoActionPerformed
-        VentanaMenú ventana = new VentanaMenú(); 
-        Usuario invitado = new Usuario("", "");
-        ventana.Verificar(invitado);
-               
+        VentanaMenú ventana = new VentanaMenú(bool=false); 
+                      
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnInvitadoActionPerformed
@@ -129,25 +131,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInvitadoMouseClicked
 
     private void btnPushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPushActionPerformed
-        user = new LinkedStack();
-        String un = "asd";              
-        String pass = "asd";
-        String encargado = "asd";
-        
-        int i=0;
-        while(i<5000){
-            Usuario uss = new Usuario(un, pass);                                    //prueba insersion de datos stack
-            user.push(uss);
-            Evento eve = new Evento(un, pass, encargado);
-            this.evento.enqueue(eve);
-            i++;
+       
+        char userName = 'a';
+                
+        for(int i=0; i<26; i++)
+        {
+            Usuario user = new Usuario(String.valueOf(userName),String.valueOf(i));
+            userlist.put(user.getUsername(), user);
+ 
+            int asciivalue = (int) userName;
+            System.out.println(userName+" = "+i);
+            
+            asciivalue++;
+            userName = (char) asciivalue;
         }
+        
+        System.out.println(userlist.size());
+        Usuario us = userlist.get("b");
+        Usuario use = new Usuario("b", "HOALA");
+        
+        System.out.println(use.getUsername());
+        
+        if(use.getUsername() == "b")
+        {
+            System.out.println("BUENAS GONORREAS");
+        }
+        
         JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
     }//GEN-LAST:event_btnPushActionPerformed
 
     private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
         InicioSesión ventana = new InicioSesión(); 
-     
+        bool=true;
         ventana.setVisible(true);
         this.setVisible(false);
       
@@ -188,6 +203,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+                Usuario admin = new Usuario("admin", String.valueOf(1234));
+                
+                userlist.put(admin.getUsername(), admin);
+                
                 new VentanaPrincipal().setVisible(true);
             
             }

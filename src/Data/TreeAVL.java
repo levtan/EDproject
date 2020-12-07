@@ -148,12 +148,24 @@ public class TreeAVL<T>
     
     public Node find(int key) {
     Node current = root;
-    while (current != null) {
-        if (current.getNumkey() == key) {
+    while (current != null) 
+    {
+        if (current.getNumkey() == key)     
+        {
             break;
         }
-        current = current.getNumkey() < key ? current.getRight() : current.getLeft();
+            current = current.getNumkey() < key ? current.getRight() : current.getLeft();
+        }
+        return current;
     }
-    return current;
-}
+
+    public Node getRoot() {
+        return root;
+    }
+
+    public void setRoot(Node root) {
+        this.root = root;
+    }
+    
+    
 }

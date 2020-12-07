@@ -1,6 +1,7 @@
 package GUI.Ventana;
 
 import Data.*;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 public class Registro extends javax.swing.JFrame {
@@ -153,9 +154,8 @@ public class Registro extends javax.swing.JFrame {
             String nombre, carrera, pass, pass2, correo;
             int cedula, celular;
             
-            LinkedStack<Usuario> user = new LinkedStack();
+            HashMap user = VentanaPrincipal.userlist;
             
-            user = VentanaPrincipal.user;
             nombre= txtnombre.getText();
             carrera = txtprograma.getText();
             pass = txtcontraseña.getText();
@@ -170,7 +170,7 @@ public class Registro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
             }else{
                 usuario = new Usuario(nombre, pass, celular, cedula, carrera, correo);
-                user.push(usuario);
+                user.put(usuario.getUsername(), usuario);
                 JOptionPane.showMessageDialog(null, "Registro creado");
             }
             

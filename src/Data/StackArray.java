@@ -1,8 +1,5 @@
 package Data;
 
-
-
-    
     public class StackArray<T> {
     private static final int N=3;
     private int top;

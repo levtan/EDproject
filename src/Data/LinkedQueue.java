@@ -83,8 +83,8 @@ package Data;
     }*/
     
     public class LinkedQueue<T>{
-        private Nodo<T> top;
-        private Nodo<T> tail;
+        private Node<T> top;
+        private Node<T> tail;
         private int size;
         
         public int size(){
@@ -100,7 +100,7 @@ package Data;
         }
         
         public void enqueue(T key){
-            Nodo<T> nodo = new Nodo <T>(key, this.tail);
+            Node<T> nodo = new Node <T>(key, this.tail);
             this.tail=nodo;
             size++;
         }
@@ -112,7 +112,7 @@ package Data;
             }else{
                 T ref;
                 ref = top.getKey();
-                top = top.getNext();
+                top = top.getRight();
                 size --;
                 return ref;
             }
@@ -121,7 +121,7 @@ package Data;
         public boolean find(T key){
             boolean ans= false;
             T s= top.getKey();
-            Nodo fnd = new Nodo(s, top);
+            Node fnd = new Node(s, top);
             int i = 0;
             while(i <= size){
                 if(key.equals(fnd.getKey())){
@@ -129,7 +129,7 @@ package Data;
                     i = size;
                     i++;
                 }else{
-                    fnd = fnd.getNext();
+                    fnd = fnd.getRight();
                     i++;
                 }
             }

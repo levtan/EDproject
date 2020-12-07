@@ -2,7 +2,7 @@ package Data;
 
  public class LinkedStack<T> {
 
-    private Nodo<T> top;
+    private Node<T> top;
     private int size;
     
     
@@ -21,7 +21,7 @@ package Data;
     
     
     public void push(T key){
-        Nodo<T> nodo = new Nodo <T>(key, this.top);
+        Node<T> nodo = new Node <T>(key, this.top);
         this.top=nodo;
         size++;
     }
@@ -34,7 +34,7 @@ package Data;
         }else{
             T ref;
             ref = top.getKey();
-            top = top.getNext();
+            top = top.getRight();
             size --;
             return ref;
         }
@@ -61,7 +61,7 @@ package Data;
     public boolean find(T key){
         boolean ans= false;
         T s= top.getKey();
-        Nodo fnd = new Nodo(s, top);
+        Node fnd = new Node(s, top);
         int i = 0;
         while(i <= size){
             if(key.equals(fnd.getKey())){
@@ -69,7 +69,7 @@ package Data;
             i = size;
             i++;
         }else{
-            fnd = fnd.getNext();
+            fnd = fnd.getRight();
             i++;
         }
         }

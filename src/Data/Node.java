@@ -14,6 +14,12 @@ public class Node<T>
         this.left = null;
     }
 
+    public Node(T key, Node<T> next)
+    {
+        this.key = key;
+        this.right = next;
+    }
+    
     public Node(T key) {
         this.key = key;
         this.right = null;

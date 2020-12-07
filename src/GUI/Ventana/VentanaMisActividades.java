@@ -86,7 +86,7 @@ public class VentanaMisActividades extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        VentanaMenú ventana = new VentanaMenú(); 
+        VentanaMenú ventana = new VentanaMenú(VentanaPrincipal.bool); 
          Usuario invitado = new Usuario("--", "--");
        ventana.setVisible(true);
         this.setVisible(false);

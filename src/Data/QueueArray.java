@@ -1,6 +1,5 @@
 package Data;
 
-
 public class QueueArray<T>{
         private static final int N=5;
         private int top;

@@ -1,12 +1,13 @@
 package GUI.Ventana;
 
 import Data.*;
+import static GUI.Ventana.VentanaPrincipal.userlist;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import javax.swing.JOptionPane;
 
-public class InicioSesión extends javax.swing.JFrame {
-
-    public static String texto="";
-    
+public class InicioSesión extends javax.swing.JFrame {   
     
     public InicioSesión() {
         initComponents();
@@ -104,22 +105,61 @@ public class InicioSesión extends javax.swing.JFrame {
     private void btnvalidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvalidarActionPerformed
         Usuario df;
         
-        LinkedStack<Usuario> uss = new LinkedStack();
-        uss = VentanaPrincipal.user;
+        String user = txtusuario.getText();
+        String pass = txtcontraseña.getText();
         
-        String user,pass;
-        user = txtusuario.getText();
-        pass = txtcontraseña.getText();
+        Iterator hmIterator = VentanaPrincipal.userlist.entrySet().iterator();
+                
+        System.out.println(VentanaPrincipal.userlist.size());
         
-        df= uss.top();
-        
-        if(df.confirmation(user, pass)==true){
-            VentanaMenú ventana = new VentanaMenú();
-            ventana.setVisible(true);
-            this.setVisible(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos");
+        while(hmIterator.hasNext())
+        {
+            Map.Entry mapElement = (Map.Entry) hmIterator.next();
+  
+            Usuario us = (Usuario) mapElement.getValue();
+            
+            System.out.println(us.getPass());
+            System.out.println(mapElement.getKey());
+            
+            if(mapElement.getKey()==user && pass==us.getPass())
+            {
+                VentanaMenú ventana = new VentanaMenú(VentanaPrincipal.bool);
+                ventana.setVisible(true);
+                this.setVisible(false);
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos");
+                break;
+            }
         }
+        
+        /*// Consider the hashmap contains 
+        // student name and their marks 
+        HashMap<String, Integer> hm =  
+                    new HashMap<String, Integer>(); 
+  
+        // Adding mappings to HashMap 
+        hm.put("GeeksforGeeks", 54); 
+        hm.put("A computer portal", 80); 
+        hm.put("For geeks", 82); 
+  
+        // Printing the HashMap 
+        System.out.println("Created hashmap is" + hm); 
+  
+        // Getting an iterator 
+        Iterator hmIterator = hm.entrySet().iterator(); 
+  
+        // Iterate through the hashmap 
+        // and add some bonus marks for every student 
+        System.out.println("HashMap after adding bonus marks:"); 
+  
+        while (hmIterator.hasNext()) { 
+            Map.Entry mapElement = (Map.Entry)hmIterator.next(); 
+            int marks = ((int)mapElement.getValue() + 10); 
+            System.out.println(mapElement.getKey() + " : " + marks); 
+        } */
+        
+        
     }//GEN-LAST:event_btnvalidarActionPerformed
 
     private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed

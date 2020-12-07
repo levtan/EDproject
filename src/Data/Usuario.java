@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 
 public class Usuario implements Serializable{
-    String Username;
-    String pass;
-    int celular;
-    int cedula;
-    String carrera;
-    String correo;
+    private String Username;
+    private String pass;
+    private int celular;
+    private int cedula;
+    private String carrera;
+    private String correo;
 
     public String getCorreo() {
         return correo;

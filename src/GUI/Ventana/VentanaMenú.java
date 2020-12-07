@@ -13,14 +13,23 @@ public class VentanaMenú extends javax.swing.JFrame {
 String [] botones= {"Volver","Guardar"};
 InicioSesión user = new InicioSesión();
 
-    public VentanaMenú() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.btPerfil.setEnabled(false);
-        this.btnBuscar.setEnabled(false);
-        this.btnLugares.setEnabled(false);
-        this.btnMisActividades.setEnabled(false);
-        this.btnCrearEvento.setEnabled(false);
+
+    public VentanaMenú(boolean bool)
+    {
+        if(!bool)
+        {
+            initComponents();
+            this.setLocationRelativeTo(null);
+            this.btPerfil.setEnabled(false);
+            this.btnBuscar.setEnabled(false);
+            this.btnLugares.setEnabled(false);
+            this.btnMisActividades.setEnabled(false);
+            this.btnCrearEvento.setEnabled(false);
+        }else
+        {
+            initComponents();
+            this.setLocationRelativeTo(null);
+        }  
     }
 
     @SuppressWarnings("unchecked")
@@ -202,73 +211,7 @@ InicioSesión user = new InicioSesión();
     }//GEN-LAST:event_btnLugaresActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-      
-       /*String valor = this.txtBuscar.getText();
-      
-       Inventario inventario= new Inventario();
-       ArrayList<Lugar> listaLugares = new ArrayList<>(inventario.CrearLugar());
-       ArrayList<Actividad> listaActividades = new ArrayList<>(inventario.CrearActividades());
-       
-        for (Lugar lista : listaLugares) {
-            if (lista.getNombre().equalsIgnoreCase(valor)){
-                  JFrame parentFrame = new JFrame(); 
-           Icon icono=new ImageIcon (getClass().getResource("/GUI/Imagenes/logo.png"));
- 
-                   
-                    int variable= JOptionPane.showOptionDialog(parentFrame, lista.toString() 
-                     , "Edificio", JOptionPane.YES_NO_CANCEL_OPTION,
-                      JOptionPane.WARNING_MESSAGE, icono, botones, botones[0]);
-                    if (variable==0){
-                        
-                    }else{
-                        
-                    }
-               
-       
-       
-       
-            }else{
-            if (lista instanceof Edificio){
-                if (((Edificio) lista).getCódigo().contains(valor)){
-                    JFrame parentFrame = new JFrame();
-                    
-                      Icon icono=new ImageIcon (getClass().getResource("/GUI/Imagenes/logo.png"));
- 
-                   
-                    int variable= JOptionPane.showOptionDialog(parentFrame, lista.toString() 
-                     , "Edificio", JOptionPane.YES_NO_CANCEL_OPTION,
-                      JOptionPane.WARNING_MESSAGE, icono, botones, botones[0]);
-                    if (variable==0){
-                        
-                    }else{
-                        
-                    }
-                }
-            } 
-        } 
-        } 
-        for (Actividad alista : listaActividades) {
-            if (alista.getNombre().equalsIgnoreCase(valor)){
-                  JFrame parentFrame = new JFrame(); 
-                    Icon icono=new ImageIcon (getClass().getResource("/GUI/Imagenes/logo.png"));
- 
-                   
-                    int variable= JOptionPane.showOptionDialog(parentFrame, listaActividades.toString() 
-                     , "Edificio", JOptionPane.YES_NO_CANCEL_OPTION,
-                      JOptionPane.WARNING_MESSAGE, icono, botones, botones[0]);
-                    if (variable==0){
-                        
-                    }else{
-                        
-                    }
-     
-            }
-        
-        }*/
-
-
-        
-       
+             
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
