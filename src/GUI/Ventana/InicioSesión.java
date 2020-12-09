@@ -1,9 +1,7 @@
 package GUI.Ventana;
 
 import Data.*;
-import static GUI.Ventana.VentanaPrincipal.userlist;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
@@ -115,35 +113,28 @@ public class InicioSesión extends javax.swing.JFrame {
         user = txtusuario.getText();
         pass = txtcontraseña.getText();
         
-        Iterator hmIterator = VentanaPrincipal.userlist.entrySet().iterator();
-                                
-        
-        
-        while(hmIterator.hasNext())
+        HashMap userlist = VentanaPrincipal.getUserlist();
+
+        if(userlist.containsKey(user))
         {
-            Map.Entry mapElement = (Map.Entry) hmIterator.next();
-  
-            Usuario us = (Usuario) mapElement.getValue();
+            Usuario userEnter = (Usuario) userlist.get(user);
             
-            String userName = us.getUsername();
-            String userPsw = us.getPass();          
+            String userName = userEnter.getUsername();
+            String userPsw = userEnter.getPass();   
             
-            if(userName == null || userPsw == null)
-            {
-                JOptionPane.showMessageDialog(null, "Ingrese usuario y contraseña");
-                break;
-            }else if(userName.equals(user) && userPsw.equals(pass))
+            if(userName.equals(user) && userPsw.equals(pass))
             {
                 ventana = new VentanaMenú(VentanaPrincipal.bool);
                 ventana.setVisible(true);
                 this.setVisible(false);
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos");
             }
-        }
-         
-        if(!ventana.isVisible())
+        }else
         {
-            JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos");
-        }        
+            JOptionPane.showMessageDialog(null, "No existe el usuario "+user);
+        }      
     }//GEN-LAST:event_btnvalidarActionPerformed
 
     private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed

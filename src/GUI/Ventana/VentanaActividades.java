@@ -2,13 +2,14 @@ package GUI.Ventana;
 
 import Data.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
-public class VentanaActividades extends javax.swing.JFrame {
-
-    
+public class VentanaActividades extends javax.swing.JFrame 
+{
     public VentanaActividades() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -93,30 +94,19 @@ public class VentanaActividades extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void verEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEventosActionPerformed
-        QueueArray <Evento> eve = VentanaPrincipal.evento;
-        QueueArray <Evento> even = RegistroEvento.evv;
-        
-        int i=0;
         JFrame parentFrame = new JFrame(); 
-        if(even.empty()==true){
-            JOptionPane.showMessageDialog(parentFrame, "No hay eventos disponibles");
-        }else{
-            while(i<5){
-              Evento evento = eve.dequeue();
-              Evento event = even.dequeue();
-              JOptionPane.showMessageDialog(parentFrame, evento);
-              JOptionPane.showMessageDialog(parentFrame, event);
-              i++;
-            }
-        }
-    
+        HashMap eventList = VentanaPrincipal.getEvenlist();
+        Iterator hm = eventList.entrySet().iterator();
+   
+        while(hm.hasNext())
+        {
+            Map.Entry ent = (Map.Entry) hm.next();
+                      
+            AVLTree evns = (AVLTree) ent.getValue();
+            evns.inorder();
+        }       
     }//GEN-LAST:event_verEventosActionPerformed
     
-    /**
-     * @param args the command line arguments
-     */
-   
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;

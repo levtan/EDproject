@@ -1,6 +1,7 @@
 package GUI.Ventana;
 
 import Data.*;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 public class RegistroEvento extends javax.swing.JFrame {
@@ -9,10 +10,9 @@ public class RegistroEvento extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(null);
+        setResizable(false);
     }
     
-    public static QueueArray<Evento> evv = VentanaPrincipal.evento;
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -116,22 +116,47 @@ public class RegistroEvento extends javax.swing.JFrame {
 
     private void btnvalidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvalidarActionPerformed
             Evento event;
-            String evento, fecha, encargado, descripcion;
-            
-            QueueArray<Evento> even = VentanaPrincipal.evento;
-            evv = even;
+            String evento, fecha, descripcion, key;
+            HashMap userConf = VentanaPrincipal.getUserlist();
+            HashMap eventList = VentanaPrincipal.getEvenlist();
+            AVLTree ingtree = VentanaPrincipal.getIngtree();
+            AVLTree arttree = VentanaPrincipal.getArtree();
+            AVLTree medtree = VentanaPrincipal.getMedree();
+            Usuario encargado;
+
             evento= txtevent.getText();
             fecha = txtdate.getText();
-            encargado = txtencargado.getText();
+            encargado = (Usuario) userConf.get(txtencargado.getText());
             descripcion = txtdescripcion.getText();
             
-            if(evento==null||fecha==null||encargado==null){
+            if(evento==null||fecha==null||txtencargado.getText()==null)
+            {
                 JOptionPane.showMessageDialog(null, "Ingrese un nombre de evento, fecha o encargado");
-            }else{
+            }else
+            {
                 event = new Evento(evento, fecha, descripcion, encargado);
-                this.evv.enqueue(event);
-                JOptionPane.showMessageDialog(null, "Registro creado");
                 
+                if(encargado.getCarrera()=="sistemas" || encargado.getCarrera()=="electrica")
+                {
+                    key = "facIngenieria";
+                    ingtree = (AVLTree) eventList.get(key);
+                    ingtree.add(event);
+                    eventList.put(key, ingtree);
+                }else if(encargado.getCarrera()=="medicina")
+                {
+                    key = "facMedicina";
+                    medtree = (AVLTree) eventList.get(key);
+                    medtree.add(event);
+                    eventList.put(key, medtree);
+                }else 
+                {
+                    key = "facArtes";
+                    arttree = (AVLTree) eventList.get(key);
+                    arttree.add(event);
+                    eventList.put(key, arttree);
+                }
+
+                JOptionPane.showMessageDialog(null, "Registro creado");                
             }
             
             VentanaMenú ventana = new VentanaMenú(VentanaPrincipal.bool);

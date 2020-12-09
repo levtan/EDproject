@@ -9,11 +9,9 @@ import javax.swing.JOptionPane;
 
 public class Perfil extends javax.swing.JFrame {
     
-    public Perfil(String nombreUsuario) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        
-        HashMap userPerfil = VentanaPrincipal.userlist;                
+    public Perfil(String nombreUsuario) 
+    {   
+        HashMap userPerfil = VentanaPrincipal.getUserlist();                
 //        Iterator hmIterator = userPerfil.entrySet().iterator();
                
         System.out.println(userPerfil.containsKey(nombreUsuario));
@@ -28,6 +26,10 @@ public class Perfil extends javax.swing.JFrame {
             txtdocumento.setText(String.valueOf(user.getCedula()));
             //txtnombreUsuario.setText(nombreUsuario);*/
         }
+        
+        initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")

@@ -1,71 +1,118 @@
 package Data;
 
-import java.io.Serializable;
-
-public class Evento implements Serializable{
-    String NombreEvento;
-    String date;
-    String descripcion;
-    String encargado;
-
-    @Override
-    public String toString() {
-        return "Evento{" + "NombreEvento=" + NombreEvento + ", date=" + date + ", descripcion=" + descripcion + ", encargado=" + encargado + '}';
+public class Evento implements Comparable<Evento>
+{
+    private String NombreEvento;
+    private String date;
+    private String descripcion;
+    private String lugar;
+    private int cod;
+    private Usuario encargado;
+   
+    public String getLugar() {
+        return lugar;
     }
-    
-    
 
-    public String getNombreEvento() {
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public String getNombreEvento() 
+    {
         return NombreEvento;
     }
 
-    public void setNombreEvento(String NombreEvento) {
+    public void setNombreEvento(String NombreEvento) 
+    {
         this.NombreEvento = NombreEvento;
     }
 
-    public String getDate() {
+    public String getDate()
+    {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(String date)
+    {
         this.date = date;
     }
 
-    public String getDescripcion() {
+    public String getDescripcion()
+    {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void setDescripcion(String descripcion) 
+    {
         this.descripcion = descripcion;
     }
 
-    public String getEncargado() {
+    public void setCod(int cod)
+    {
+        this.cod=cod;
+    }
+    
+    public int getCod()
+    {
+        return cod;
+    }
+    
+    public Usuario getEncargado() 
+    {
         return encargado;
     }
 
-    public void setEncargado(String encargado) {
+    public void setEncargado(Usuario encargado) 
+    {
         this.encargado = encargado;
     }
 
-    public Evento(String NombreEvento, String date, String descripcion, String encargado) {
+    public Evento(String NombreEvento, String date, String descripcion, Usuario encargado) 
+    {
         this.NombreEvento = NombreEvento;
         this.date = date;
         this.descripcion = descripcion;
         this.encargado = encargado;
     }
 
-    public Evento(String NombreEvento, String date, String encargado) {
+    public Evento(String NombreEvento, String date, Usuario encargado)
+    {
         this.NombreEvento = NombreEvento;
         this.date = date;
         this.encargado = encargado;
     }
     
-    
-    public Evento(){
+    public Evento()
+    {
         this.NombreEvento = NombreEvento;
         this.date = date;
         this.descripcion = descripcion;
         this.encargado = encargado;
+    }
+        
+    @Override
+    public String toString() 
+    {
+        return "NombreEvento= " + NombreEvento + 
+               ", fecha =" + date + 
+               ", encargado= " + encargado.getUsername() +
+               ", descripcion= " + descripcion;
+    }
+    
+    @Override
+    public int compareTo(Evento ev)
+    {
+        int res=0;
+        
+        if(this.cod < ev.getCod())
+        {
+            res=-1;
+        }else if(this.cod > ev.getCod())
+        {
+            res=1;
+        }
+        
+        return res;
     }
     
 }

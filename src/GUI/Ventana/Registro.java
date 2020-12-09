@@ -10,6 +10,7 @@ public class Registro extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -150,11 +151,12 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnvalidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvalidarActionPerformed
+            boolean acc = false;
             Usuario usuario;
-            String nombre, carrera, pass, pass2, correo;
-            int cedula, celular;
+            String nombre="", carrera="", pass="", pass2="", correo="";
+            int cedula=0, celular=0;
             
-            HashMap user = VentanaPrincipal.userlist;
+            HashMap user = VentanaPrincipal.getUserlist();
             
             nombre= txtnombre.getText();
             carrera = txtprograma.getText();
@@ -164,7 +166,7 @@ public class Registro extends javax.swing.JFrame {
             cedula = Integer.parseInt(txtid.getText());
             celular = Integer.parseInt(txtapellido.getText());
             
-            if(nombre==null || pass==null)
+            if(nombre.isEmpty() || pass.isEmpty())
             {
                 JOptionPane.showMessageDialog(null, "Ingrese un nombre de usuario o contraseña");
             }else if(!pass.equals(pass2))
@@ -176,13 +178,15 @@ public class Registro extends javax.swing.JFrame {
                 user.put(usuario.getUsername(), usuario);
                 JOptionPane.showMessageDialog(null, "Registro creado");
                 JOptionPane.showMessageDialog(null, "Nombre de usuario: "+usuario.getUsername());
-                
+                acc=true;
             }
             
-            VentanaPrincipal ventana = new VentanaPrincipal();
-            ventana.setVisible(true);
-            this.setVisible(false);   
-
+            if(acc)
+            {
+                VentanaPrincipal ventana = new VentanaPrincipal();
+                ventana.setVisible(true);
+                this.setVisible(false);   
+            }
     }//GEN-LAST:event_btnvalidarActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed

@@ -1,21 +1,38 @@
 
 package GUI.Ventana;
 
-import Data.Evento;
-import Data.LinkedStack;
-import Data.Participante;
-import Data.QueueArray;
-import Data.Usuario;
-import Data.TreeAVL;
-import java.util.ArrayList;
+import Data.*;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
     
-    static HashMap<String, Usuario> userlist = new HashMap<>();
+    private static HashMap<String, Usuario> userlist = new HashMap<>();
+    private static HashMap<String, AVLTree> evenlist = new HashMap<>();
+    private static AVLTree<Evento>  ingtree = new AVLTree<>();
+    private static AVLTree<Evento>  medree = new AVLTree<>();
+    private static AVLTree<Evento>  artree = new AVLTree<>();
+
+    public static AVLTree<Evento> getIngtree() {
+        return ingtree;
+    }
+    public static AVLTree<Evento> getMedree() {
+        return medree;
+    }
+    public static AVLTree<Evento> getArtree() {
+        return artree;
+    }
     
+    public static HashMap<String, Usuario> getUserlist() {
+        return userlist;
+    }
+    public static HashMap<String, AVLTree> getEvenlist() {
+        return evenlist;
+    }   
+      
     static QueueArray<Evento> evento= new QueueArray(10000);
     static boolean bool;
     
@@ -139,10 +156,56 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             userlist.put(user.getUsername(), user);
  
             int asciivalue = (int) userName;
-            System.out.println(userName+" = "+i);
+            //System.out.println(userName+" = "+i);
             
             asciivalue++;
             userName = (char) asciivalue;
+        }        
+                
+        Usuario facIng = new Usuario("facIngenieria", "1234");
+        Usuario facArt = new Usuario("facArtes", "1234");
+        Usuario facMed = new Usuario("facMedicina", "1234");
+        
+        userlist.put(facIng.getUsername(), facIng);
+        userlist.put(facArt.getUsername(), facArt);
+        userlist.put(facMed.getUsername(), facMed);
+        
+        
+        Evento evenIng = new Evento();
+        evenIng.setNombreEvento("Jornada de proyectos y prototipos");
+        evenIng.setEncargado(facIng);
+        evenIng.setLugar("Edificio CYT, 554");
+        evenIng.setCod(1);
+        
+        Evento evenMed = new Evento();
+        evenMed.setNombreEvento("Como no ser expulsado en primer semestre");
+        evenMed.setEncargado(facMed);
+        evenMed.setLugar("Edificio medicina, 230");
+        evenMed.setCod(1);
+        
+        Evento evenMed2 = new Evento();
+        evenMed2.setNombreEvento("Conferencia #SaludUNALcontigo: De la Saturnalia a la Navidad");
+        evenMed2.setEncargado(facMed);
+        evenMed2.setDate("10 de diciembre, 6:00 p.m");
+        evenMed2.setLugar("https://www.facebook.com/SaludUNALcontigo");
+        evenMed2.setCod(2);
+        
+        ingtree.add(evenIng);
+        medree.add(evenMed);
+        medree.add(evenMed2);
+               
+        evenlist.put(facIng.getUsername(), ingtree);
+        evenlist.put(facMed.getUsername(), medree);
+        evenlist.put(facArt.getUsername(), artree);
+        
+        int day=9;
+        for(int j=0; j<3; j++)
+        {
+            day=day+j;
+            Evento evnt = new Evento("Conferencia", day+"/12/20", facArt);
+            evnt.setCod(j);
+            artree.add(evnt);
+            evenlist.put(evnt.getNombreEvento(), artree);
         }        
         JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
     }//GEN-LAST:event_btnPushActionPerformed
@@ -192,6 +255,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public void run() {
                 
                 Usuario admin = new Usuario("admin", String.valueOf(1234));
+                admin.setCarrera("artes");
                 
                 userlist.put(admin.getUsername(), admin);
                 

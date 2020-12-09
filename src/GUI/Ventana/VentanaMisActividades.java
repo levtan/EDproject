@@ -93,23 +93,24 @@ public class VentanaMisActividades extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void verEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEventosActionPerformed
-        QueueArray <Evento> eve = VentanaPrincipal.evento;
-        QueueArray <Evento> even = RegistroEvento.evv;
-        
-        int i=0;
-        JFrame parentFrame = new JFrame(); 
-        if(even.empty()==true){
-            JOptionPane.showMessageDialog(parentFrame, "No hay eventos disponibles");
-        }else{
-            while(i<5){
-              Evento evento = eve.dequeue();
-              Evento event = even.dequeue();
-              JOptionPane.showMessageDialog(parentFrame, evento);
-              JOptionPane.showMessageDialog(parentFrame, event);
-              i++;
-            } 
+//        QueueArray <Evento> eve = VentanaPrincipal.evento;
+//        QueueArray <Evento> even = RegistroEvento.evv;      
+//        
+//        int i=0;
+//        JFrame parentFrame = new JFrame(); 
+//        if(even.empty()==true){
+//            JOptionPane.showMessageDialog(parentFrame, "No hay eventos disponibles");
+//        }else{
+//            while(i<5){
+//              Evento evento = eve.dequeue();
+//              Evento event = even.dequeue();
+//              JOptionPane.showMessageDialog(parentFrame, evento);
+//              JOptionPane.showMessageDialog(parentFrame, event);
+//              i++;
+//            } }
+            
     }//GEN-LAST:event_verEventosActionPerformed
-}
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

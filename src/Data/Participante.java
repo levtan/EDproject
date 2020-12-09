@@ -1,6 +1,6 @@
 package Data;
 
-public class Participante 
+public class Participante implements Comparable<Participante>
 {
     private Usuario user;
     private int num;
@@ -29,6 +29,20 @@ public class Participante
 
     public void setNum(int num) {
         this.num = num;
+    }
+
+    @Override
+    public int compareTo(Participante pr) 
+    {
+        int res = 0;
+        if(this.num < pr.getNum())
+        {
+            res=-1;
+        }else if(this.num > pr.getNum())
+        {
+            res=1;
+        }
+        return res;
     }
     
 }
